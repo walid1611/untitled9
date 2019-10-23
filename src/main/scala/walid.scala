@@ -14,7 +14,7 @@ object walid {
     import spark.implicits._
 
     import org.apache.spark.sql.functions._
-    val studf = Seq(
+   /* val studf = Seq(
         Row(1, "u1", 5),
         Row(1, "u2", 10),
         Row(2, "u2", 20),
@@ -25,28 +25,39 @@ object walid {
         Row(5, "u1", 15),
         Row(6, "u4", 10),
         Row(7, "u5",9),
-        Row(8, "u6", 7))
+        Row(8, "u6", 7)) */
 
     //schema de la table source
 
     val shemaTable =
-      StructType(
 
+      StructType(
+        StructField("id", IntegerType, true) ::
         StructField("mois", IntegerType, true) ::
         StructField("nom", StringType, true) ::
-        StructField("nbc", IntegerType, true) :: Nil)
+        StructField("nombreConnexionACtuel", IntegerType, true) :: Nil)
 
-    val df = spark.createDataFrame(spark.sparkContext.parallelize(studf), shemaTable)
+   // val df = spark.createDataFrame(spark.sparkContext.parallelize(studf), shemaTable)
     // df.show()
-    val  df1 = df.withColumnRenamed("nbc", "nombreConnexionACtuel")
+
+    val df = spark
+      .read
+      .option("header", "false")
+      .schema(shemaTable)
+      .csv("hdfs:///user/abc/part*")
+
+
+    val  df1 = df.select("mois","nom","nombreConnexionACtuel")
+
 
 
 
     df1.createOrReplaceTempView("table1")
+
     df1.show()
     val df2 =spark.sql(" select * from (select nom as nomp , mois+1 as moisp ,nombreConnexionACtuel as connexionprecedante from table1)" +
                        "where moisp < (select max(mois+1) from table1)")
-    df2.show()
+
     df2.createOrReplaceTempView("table2")
 
     val resultat = spark.sql(" select * from (select t1.mois, t2.moisp , t1.nom ,t2.nomp,t1.nombreConnexionACtuel, " +
