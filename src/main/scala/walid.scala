@@ -7,6 +7,7 @@ object walid {
 
 
 println("test")
+    println("tttt")
     val spark: SparkSession = SparkSession.builder()
       .master("local[*]")
       .appName("prog1").getOrCreate()
