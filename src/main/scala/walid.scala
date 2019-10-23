@@ -44,7 +44,7 @@ object walid {
       .read
       .option("header", "false")
       .schema(shemaTable)
-      .csv("hdfs:///user/abc/part*")
+      .csv("hdfs:///user/abc/table_kpi/part*")
 
 
     val  df1 = df.select("mois","nom","nombreConnexionACtuel")
