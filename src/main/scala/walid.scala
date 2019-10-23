@@ -4,13 +4,10 @@ import org.apache.spark.sql.types._
 object walid {
 
   def main(args: Array[String]): Unit = {
-<<<<<<< HEAD
-    /////////////////je teste git ttttttzeze
-    val xxxxxxgit
 
 
 
-
+ /// je test git hahaha
     val spark: SparkSession = SparkSession.builder()
       .master("local[*]")
       .appName("prog1").getOrCreate()
