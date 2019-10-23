@@ -77,7 +77,7 @@ println("test")
       .select("mois","nom","nombreConnexionACtuel","connexionprecedante")
       .orderBy("mois")
 
-
+    resultat.asInstanceOf[]
       resultat.show(50)
 
   }
