@@ -6,7 +6,7 @@ object walid {
   def main(args: Array[String]): Unit = {
 
 
-
+println("test")
     val spark: SparkSession = SparkSession.builder()
       .master("local[*]")
       .appName("prog1").getOrCreate()
