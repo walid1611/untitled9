@@ -61,7 +61,7 @@ object walid {
 
     df2.createOrReplaceTempView("table2")
 
-    val resultat = spark.sql(" select * from (select t1.mois, t2.moisp , t1.nom ,t2.nomp,t1.nombreConnexionACtuel, " +
+    val resultat =  spark.sql(" select * from (select t1.mois, t2.moisp , t1.nom ,t2.nomp,t1.nombreConnexionACtuel, " +
                              "t2.connexionprecedante from" +
                              " table1 t1 full join table2 t2 on t1.mois =t2.moisp and t1.nom = t2.nomp)   ")
 
