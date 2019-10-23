@@ -6,8 +6,7 @@ object walid {
   def main(args: Array[String]): Unit = {
 
 
-println("test")
-    println("tttt")
+
     val spark: SparkSession = SparkSession.builder()
       .master("local[*]")
       .appName("prog1").getOrCreate()
@@ -77,8 +76,7 @@ println("test")
       .select("mois","nom","nombreConnexionACtuel","connexionprecedante")
       .orderBy("mois")
 
-    resultat.asInstanceOf[]
-    println("rrrrrrr")
+
       resultat.show(50)
 
   }
